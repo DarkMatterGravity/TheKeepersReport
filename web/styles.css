@@ -1,0 +1,404 @@
+/* EvenTide PWA - Dark Theme Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #0f0f1a;
+  --bg-secondary: #1a1a2e;
+  --bg-card: #16213e;
+  --text-primary: #edf2f7;
+  --text-secondary: #a0aec0;
+  --text-muted: #718096;
+  --accent-blue: #4299e1;
+  --accent-orange: #ed8936;
+  --accent-green: #48bb78;
+  --accent-red: #fc8181;
+  --high-tide: #4299e1;
+  --low-tide: #9f7aea;
+  --border-color: #2d3748;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 12px;
+  gap: 12px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.title-section h1 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+}
+
+.station-id {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.header-info {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.info-group {
+  display: flex;
+  gap: 12px;
+}
+
+.info-item {
+  text-align: center;
+}
+
+.info-label {
+  display: block;
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.sunrise-value { color: #fbd38d; }
+.sunset-value { color: #f687b3; }
+.air-temp-value { color: var(--accent-green); }
+.water-temp-value { color: var(--accent-blue); }
+
+.current-time {
+  text-align: right;
+}
+
+.time-label {
+  display: block;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.time-value {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  min-height: 0;
+}
+
+/* Chart Container */
+.chart-container {
+  flex: 1;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  position: relative;
+  min-width: 0;
+}
+
+#tideChart {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-secondary);
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--accent-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--accent-red);
+}
+
+.error button {
+  padding: 10px 20px;
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tide-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.tide-icon {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto 6px;
+}
+
+.high-tide .tide-icon { color: var(--high-tide); }
+.low-tide .tide-icon { color: var(--low-tide); }
+.next-tide .tide-icon { color: var(--accent-green); }
+
+.tide-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.tide-time {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tide-value {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.countdown {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent-green);
+  margin-top: 2px;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.legend {
+  display: flex;
+  gap: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+.legend-color {
+  width: 8px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.legend-color.predicted { background: var(--accent-blue); }
+.legend-color.observed { background: var(--accent-orange); height: 5px; width: 5px; border-radius: 50%; }
+.legend-color.now { background: var(--accent-red); width: 2px; height: 8px; }
+
+.footer-divider {
+  width: 1px;
+  height: 16px;
+  background: var(--border-color);
+}
+
+.current-levels {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+}
+
+.level-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.level-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.level-value {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.predicted-value { color: var(--accent-blue); }
+.observed-value { color: var(--accent-orange); }
+.wave-value { color: var(--accent-green); }
+.max-wave-value { color: #f6e05e; }
+
+.level-sub {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+.data-source {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+/* Mobile Layout */
+@media (max-width: 600px) {
+  .container {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .header {
+    padding: 8px 12px;
+  }
+
+  .title-section h1 {
+    font-size: 1rem;
+  }
+
+  .header-info {
+    display: none;
+  }
+
+  .time-value {
+    font-size: 1.2rem;
+  }
+
+  .main-content {
+    flex-direction: column;
+  }
+
+  .chart-container {
+    flex: 1;
+    min-height: 200px;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .tide-card {
+    flex: 1;
+    padding: 10px 8px;
+  }
+
+  .tide-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tide-time {
+    font-size: 0.9rem;
+  }
+
+  .footer {
+    padding: 6px 10px;
+  }
+
+  .current-levels {
+    gap: 8px;
+  }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .header {
+    padding: 6px 12px;
+  }
+
+  .title-section h1 {
+    font-size: 0.9rem;
+  }
+
+  .sidebar {
+    width: 120px;
+  }
+
+  .tide-card {
+    padding: 8px;
+  }
+
+  .footer {
+    padding: 4px 10px;
+  }
+}

@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Claude local files
+.claude/
+
+# Windows artifacts
+nul
+
+# Build outputs
+dist/
+
+# Electron cache
+.electron/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local

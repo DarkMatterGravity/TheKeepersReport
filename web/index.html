@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="EvenTide">
+  <meta name="theme-color" content="#0f0f1a">
+  <meta name="description" content="Sandy Hook Tide Information">
+
+  <title>EvenTide - Sandy Hook Tides</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="title-section">
+        <h1>SANDY HOOK TIDES</h1>
+        <span class="station-id">Station 8531680</span>
+      </div>
+      <div class="header-info">
+        <div class="info-group">
+          <div class="info-item">
+            <span class="info-label">Sunrise</span>
+            <span id="sunrise" class="info-value sunrise-value">--:--</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Sunset</span>
+            <span id="sunset" class="info-value sunset-value">--:--</span>
+          </div>
+        </div>
+        <div class="info-group">
+          <div class="info-item">
+            <span class="info-label">Air</span>
+            <span id="airTemp" class="info-value air-temp-value">--°F</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Water</span>
+            <span id="waterTemp" class="info-value water-temp-value">--°F</span>
+          </div>
+        </div>
+      </div>
+      <div class="current-time">
+        <span class="time-label">Current Time</span>
+        <span id="currentTime" class="time-value">--:-- --</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Chart Area -->
+      <div class="chart-container">
+        <canvas id="tideChart"></canvas>
+        <div id="loading" class="loading">
+          <div class="spinner"></div>
+          <span>Loading tide data...</span>
+        </div>
+        <div id="error" class="error" style="display: none;">
+          <span id="errorMessage">Failed to load data</span>
+          <button onclick="window.TideApp.refresh()">Retry</button>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="tide-card high-tide">
+          <div class="tide-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L8 6h3v6H8l4 4 4-4h-3V6h3L12 2z"/>
+            </svg>
+          </div>
+          <div class="tide-label">HIGH TIDE</div>
+          <div id="highTideTime" class="tide-time">--:-- --</div>
+          <div id="highTideValue" class="tide-value">-- ft</div>
+        </div>
+
+        <div class="tide-card low-tide">
+          <div class="tide-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 22l4-4h-3v-6h3l-4-4-4 4h3v6H8l4 4z"/>
+            </svg>
+          </div>
+          <div class="tide-label">LOW TIDE</div>
+          <div id="lowTideTime" class="tide-time">--:-- --</div>
+          <div id="lowTideValue" class="tide-value">-- ft</div>
+        </div>
+
+        <div class="tide-card next-tide">
+          <div class="tide-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+            </svg>
+          </div>
+          <div class="tide-label">NEXT LOW</div>
+          <div id="nextLowTime" class="tide-time">--:-- --</div>
+          <div id="countdown" class="countdown">--h --m</div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="legend">
+        <span class="legend-item"><span class="legend-color predicted"></span>Pred</span>
+        <span class="legend-item"><span class="legend-color observed"></span>Obs</span>
+        <span class="legend-item"><span class="legend-color now"></span>Now</span>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="current-levels">
+        <div class="level-item">
+          <span class="level-label">Tide:</span>
+          <span id="observedLevel" class="level-value observed-value">--</span>
+          <span class="level-sub">(<span id="predictedLevel">--</span>)</span>
+        </div>
+        <div class="level-item wave-item">
+          <span class="level-label">Waves:</span>
+          <span id="waveHeight" class="level-value wave-value">--</span>
+          <span class="level-sub">@ <span id="wavePeriod">--</span>s <span id="waveDir">--</span></span>
+        </div>
+        <div class="level-item max-wave-item">
+          <span class="level-label">Max:</span>
+          <span id="maxWave" class="level-value max-wave-value">--</span>
+        </div>
+      </div>
+      <div class="data-source">NOAA</div>
+    </footer>
+  </div>
+
+  <!-- Scripts from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+  <script src="app.js"></script>
+
+  <!-- Register Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed:', err));
+    }
+  </script>
+</body>
+</html>

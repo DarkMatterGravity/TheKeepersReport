@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="32" fill="#0f0f1a"/>
+  <path d="M30 120 Q50 80 70 100 Q90 120 110 90 Q130 60 150 100 Q170 140 162 120"
+        stroke="#4299e1" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M30 130 Q50 90 70 110 Q90 130 110 100 Q130 70 150 110 Q170 150 162 130"
+        stroke="#ed8936" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="2 6"/>
+  <text x="96" y="170" text-anchor="middle" fill="#edf2f7" font-family="system-ui" font-size="24" font-weight="bold">TIDE</text>
+</svg>
