@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate PWA Icons</title>
+  <style>
+    body { font-family: system-ui; padding: 20px; background: #1a1a2e; color: white; }
+    canvas { border: 1px solid #333; margin: 10px; }
+    a { color: #4299e1; }
+    .instructions { background: #16213e; padding: 20px; border-radius: 8px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>EvenTide PWA Icon Generator</h1>
+  <p>Right-click each icon and "Save image as..." to download.</p>
+
+  <h3>192x192</h3>
+  <canvas id="icon192" width="192" height="192"></canvas>
+
+  <h3>512x512</h3>
+  <canvas id="icon512" width="512" height="512"></canvas>
+
+  <div class="instructions">
+    <h3>Instructions:</h3>
+    <ol>
+      <li>Right-click the 192x192 icon → Save as <code>icon-192.png</code></li>
+      <li>Right-click the 512x512 icon → Save as <code>icon-512.png</code></li>
+      <li>Place both files in the <code>web/icons/</code> folder</li>
+      <li>Delete this HTML file and the SVG file</li>
+    </ol>
+  </div>
+
+  <script>
+    function drawIcon(canvas) {
+      const ctx = canvas.getContext('2d');
+      const size = canvas.width;
+      const scale = size / 192;
+
+      // Background
+      ctx.fillStyle = '#0f0f1a';
+      ctx.beginPath();
+      ctx.roundRect(0, 0, size, size, 32 * scale);
+      ctx.fill();
+
+      // Wave 1 (predicted - blue)
+      ctx.strokeStyle = '#4299e1';
+      ctx.lineWidth = 8 * scale;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(20 * scale, 100 * scale);
+      ctx.quadraticCurveTo(50 * scale, 60 * scale, 80 * scale, 85 * scale);
+      ctx.quadraticCurveTo(110 * scale, 110 * scale, 140 * scale, 75 * scale);
+      ctx.quadraticCurveTo(160 * scale, 55 * scale, 172 * scale, 80 * scale);
+      ctx.stroke();
+
+      // Wave 2 (observed - orange dots)
+      ctx.strokeStyle = '#ed8936';
+      ctx.lineWidth = 4 * scale;
+      ctx.setLineDash([2 * scale, 8 * scale]);
+      ctx.beginPath();
+      ctx.moveTo(20 * scale, 110 * scale);
+      ctx.quadraticCurveTo(50 * scale, 70 * scale, 80 * scale, 95 * scale);
+      ctx.quadraticCurveTo(110 * scale, 120 * scale, 140 * scale, 85 * scale);
+      ctx.quadraticCurveTo(160 * scale, 65 * scale, 172 * scale, 90 * scale);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Text
+      ctx.fillStyle = '#edf2f7';
+      ctx.font = `bold ${24 * scale}px system-ui`;
+      ctx.textAlign = 'center';
+      ctx.fillText('TIDE', size / 2, 160 * scale);
+    }
+
+    drawIcon(document.getElementById('icon192'));
+    drawIcon(document.getElementById('icon512'));
+  </script>
+</body>
+</html>
