@@ -41,9 +41,11 @@ The portable EXE will be at `dist/EvenTide.exe`
 
 Progressive Web App that works on any device including iPhone.
 
-The `web/` folder contains everything needed. Host it on any static server.
+The `docs/` folder contains everything needed. Host it on any static server.
 
-**GitHub Pages**: Push to GitHub and enable Pages from the `web` folder.
+**GitHub Pages**: Enable Pages from the `docs` folder in repo settings.
+
+**Live site**: https://darkmattergravity.github.io/EvenTide/
 
 **Local testing**:
 ```bash
@@ -68,7 +70,7 @@ EvenTide/
 │   ├── styles.css
 │   ├── api.js
 │   └── renderer.js
-├── web/                # PWA version
+├── docs/               # PWA version (for GitHub Pages)
 │   ├── index.html
 │   ├── styles.css
 │   ├── app.js
