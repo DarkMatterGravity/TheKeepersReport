@@ -106,8 +106,11 @@ async function fetchObserved(date = new Date()) {
 
 async function fetchWaveData() {
   return fetchWithCache('waves', async () => {
-    const url = `${NDBC_URL}/${BUOY_ID}.spec`;
-    const response = await fetch(url);
+    // Use CORS proxy for browser requests (NDBC doesn't support CORS)
+    const directUrl = `${NDBC_URL}/${BUOY_ID}.spec`;
+    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(directUrl)}`;
+
+    const response = await fetch(proxyUrl);
     if (!response.ok) throw new Error('Failed to fetch waves');
     const text = await response.text();
     const lines = text.trim().split('\n').filter(line => !line.startsWith('#'));
