@@ -353,13 +353,17 @@ body {
 }
 
 .surf-forecast-label {
-  font-size: 0.6rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #744210;
   writing-mode: vertical-rl;
   text-orientation: mixed;
+}
+
+.wave-link .level-item.max-wave-item .level-label {
+  font-weight: 700;
 }
 
 .data-source {
@@ -502,7 +506,7 @@ body {
 
   .surf-forecast-label {
     writing-mode: horizontal-tb;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
 }
 
