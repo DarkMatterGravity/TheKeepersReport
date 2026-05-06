@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0f0f1a">
+  <title>Sandy Hook Surf Forecast</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="surf.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <a href="index.html" class="back-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+      </a>
+      <div class="title-section">
+        <h1>SURF FORECAST</h1>
+        <span class="location">Sandy Hook, NJ</span>
+      </div>
+      <div class="current-conditions">
+        <span id="currentRating" class="rating rating-fair">FAIR</span>
+      </div>
+    </header>
+
+    <!-- Current Conditions -->
+    <section class="current-section">
+      <div class="condition-cards">
+        <div class="condition-card">
+          <span class="card-label">WAVES</span>
+          <span id="currentWaveHeight" class="card-value">--</span>
+          <span class="card-unit">ft</span>
+        </div>
+        <div class="condition-card">
+          <span class="card-label">PERIOD</span>
+          <span id="currentPeriod" class="card-value">--</span>
+          <span class="card-unit">sec</span>
+        </div>
+        <div class="condition-card">
+          <span class="card-label">SWELL</span>
+          <span id="currentSwellDir" class="card-value">--</span>
+          <span class="card-unit"></span>
+        </div>
+        <div class="condition-card">
+          <span class="card-label">WIND</span>
+          <span id="currentWind" class="card-value">--</span>
+          <span class="card-unit">mph</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hourly Forecast Chart -->
+    <section class="chart-section">
+      <h2>48-Hour Forecast</h2>
+      <div class="chart-container">
+        <canvas id="forecastChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Hourly Breakdown -->
+    <section class="hourly-section">
+      <h2>Hourly Breakdown</h2>
+      <div id="hourlyList" class="hourly-list">
+        <div class="loading">Loading forecast...</div>
+      </div>
+    </section>
+
+    <!-- Conditions Guide -->
+    <section class="guide-section">
+      <h2>Sandy Hook Surf Guide</h2>
+      <div class="guide-content">
+        <div class="guide-item">
+          <span class="guide-label">Best Swell</span>
+          <span class="guide-value">E, ESE, SE</span>
+        </div>
+        <div class="guide-item">
+          <span class="guide-label">Best Wind</span>
+          <span class="guide-value">W, NW (offshore)</span>
+        </div>
+        <div class="guide-item">
+          <span class="guide-label">Ideal Height</span>
+          <span class="guide-value">3-6 ft</span>
+        </div>
+        <div class="guide-item">
+          <span class="guide-label">Ideal Period</span>
+          <span class="guide-value">8+ seconds</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <script src="surf.js"></script>
+</body>
+</html>

@@ -313,6 +313,26 @@ body {
   color: var(--text-muted);
 }
 
+/* Wave Link (clickable area) */
+.wave-link {
+  display: flex;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  padding: 6px 10px;
+  margin: -6px -10px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.wave-link:hover {
+  background: var(--bg-card);
+}
+
+.wave-link:active {
+  background: var(--border-color);
+}
+
 .data-source {
   font-size: 0.6rem;
   color: var(--text-muted);
@@ -435,6 +455,20 @@ body {
 
   .data-source {
     display: none;
+  }
+
+  /* Wave link on mobile */
+  .wave-link {
+    flex: 1;
+    justify-content: space-around;
+    padding: 8px;
+    margin: 0;
+    background: var(--bg-card);
+    border-radius: 10px;
+  }
+
+  .wave-link:hover {
+    background: var(--border-color);
   }
 }
 
