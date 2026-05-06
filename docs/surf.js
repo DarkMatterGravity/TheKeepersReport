@@ -260,6 +260,26 @@ function createChart(forecast) {
       maintainAspectRatio: false,
       interaction: { intersect: false, mode: 'index' },
       plugins: {
+        annotation: {
+          annotations: {
+            nowLine: {
+              type: 'line',
+              xMin: new Date(),
+              xMax: new Date(),
+              borderColor: '#fc8181',
+              borderWidth: 2,
+              label: {
+                display: true,
+                content: 'Now',
+                position: 'start',
+                backgroundColor: '#fc8181',
+                color: '#fff',
+                font: { size: 10, weight: 'bold' },
+                padding: 3
+              }
+            }
+          }
+        },
         legend: {
           display: true,
           position: 'top',
