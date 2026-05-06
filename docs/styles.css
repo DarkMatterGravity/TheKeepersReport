@@ -313,24 +313,53 @@ body {
   color: var(--text-muted);
 }
 
-/* Wave Link (clickable area) */
+/* Wave Link (clickable button) */
 .wave-link {
   display: flex;
+  align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: inherit;
-  padding: 6px 10px;
-  margin: -6px -10px;
-  border-radius: 8px;
-  transition: background 0.2s;
+  color: #1a1a2e;
+  padding: 8px 14px;
+  margin: -4px 0;
+  border-radius: 10px;
+  background: #ecc94b;
+  transition: background 0.2s, transform 0.1s;
 }
 
 .wave-link:hover {
-  background: var(--bg-card);
+  background: #d69e2e;
 }
 
 .wave-link:active {
-  background: var(--border-color);
+  background: #b7791f;
+  transform: scale(0.98);
+}
+
+.wave-link .level-label {
+  color: #744210;
+}
+
+.wave-link .wave-value {
+  color: #1a365d;
+}
+
+.wave-link .max-wave-value {
+  color: #1a365d;
+}
+
+.wave-link .level-sub {
+  color: #744210;
+}
+
+.surf-forecast-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #744210;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
 }
 
 .data-source {
@@ -461,14 +490,19 @@ body {
   .wave-link {
     flex: 1;
     justify-content: space-around;
-    padding: 8px;
+    padding: 12px;
     margin: 0;
-    background: var(--bg-card);
-    border-radius: 10px;
+    background: #ecc94b;
+    border-radius: 12px;
   }
 
   .wave-link:hover {
-    background: var(--border-color);
+    background: #d69e2e;
+  }
+
+  .surf-forecast-label {
+    writing-mode: horizontal-tb;
+    font-size: 0.7rem;
   }
 }
 
