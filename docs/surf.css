@@ -165,6 +165,7 @@ body {
   padding: 16px;
   margin-bottom: 12px;
   position: relative;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
@@ -172,7 +173,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
   margin-bottom: 12px;
 }
 
@@ -215,22 +215,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  max-height: 300px;
+  max-height: 250px;
   overflow-y: auto;
 }
 
-/* Expanded fullscreen state */
+/* Expanded state - taller in place */
 .hourly-section.expanded {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 100;
-  border-radius: 0;
-  margin: 0;
-  padding: 16px;
-  padding-top: 60px;
+  cursor: default;
 }
 
 .hourly-section.expanded .hourly-header {
@@ -242,12 +233,7 @@ body {
 }
 
 .hourly-section.expanded .hourly-list {
-  max-height: none;
-  height: 100%;
-}
-
-body.hourly-expanded {
-  overflow: hidden;
+  max-height: 70vh;
 }
 
 .hourly-item {

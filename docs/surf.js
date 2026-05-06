@@ -4,10 +4,25 @@ const SANDY_HOOK_LAT = 40.4667;
 const SANDY_HOOK_LNG = -74.01;
 
 // Toggle hourly section expand/collapse
-function toggleHourlyExpand() {
+function toggleHourlyExpand(event) {
+  // Don't toggle if clicking on the close button (it handles itself)
+  if (event && event.target.closest('.close-btn')) return;
+
   const section = document.getElementById('hourlySection');
+
+  // If already expanded and clicking inside list, don't collapse
+  if (section.classList.contains('expanded') && event && event.target.closest('.hourly-list')) {
+    return;
+  }
+
   section.classList.toggle('expanded');
-  document.body.classList.toggle('hourly-expanded');
+}
+
+// Close button handler
+function closeHourlyExpand(event) {
+  event.stopPropagation();
+  const section = document.getElementById('hourlySection');
+  section.classList.remove('expanded');
 }
 
 // Sandy Hook optimal conditions
