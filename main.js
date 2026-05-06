@@ -1,13 +1,17 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
 function createWindow() {
+  // Remove the default menu bar
+  Menu.setApplicationMenu(null);
+
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 600,
     minWidth: 700,
     minHeight: 500,
     backgroundColor: '#1a1a2e',
+    autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
