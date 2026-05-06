@@ -371,12 +371,64 @@ body {
     font-size: 0.9rem;
   }
 
+  /* Mobile footer - reorganize wave display */
   .footer {
-    padding: 6px 10px;
+    padding: 10px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .legend {
+    display: none;
+  }
+
+  .footer-divider {
+    display: none;
   }
 
   .current-levels {
-    gap: 8px;
+    width: 100%;
+    justify-content: space-around;
+    gap: 0;
+  }
+
+  .level-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .level-item .level-label {
+    order: -1;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .level-item .level-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .level-item .level-sub {
+    font-size: 0.55rem;
+  }
+
+  /* Hide tide level on mobile, focus on waves */
+  .level-item:first-child {
+    display: none;
+  }
+
+  .wave-value {
+    font-size: 1.5rem !important;
+  }
+
+  .max-wave-value {
+    font-size: 1.5rem !important;
+  }
+
+  .data-source {
+    display: none;
   }
 }
 
