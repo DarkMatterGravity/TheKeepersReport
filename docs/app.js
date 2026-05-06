@@ -131,21 +131,36 @@ async function fetchWaveData() {
 
 async function fetchTemperatures() {
   return fetchWithCache('temps', async () => {
-    const [airResponse, waterResponse] = await Promise.all([
-      fetch(buildUrl({ date: 'latest', station: STATION_ID, product: 'air_temperature',
-        units: 'english', time_zone: 'lst_ldt', format: 'json', application: 'EvenTide' })),
-      fetch(buildUrl({ date: 'latest', station: STATION_ID, product: 'water_temperature',
-        units: 'english', time_zone: 'lst_ldt', format: 'json', application: 'EvenTide' }))
-    ]);
+    // Air temp from NOAA tide station
+    const airResponse = await fetch(buildUrl({ date: 'latest', station: STATION_ID,
+      product: 'air_temperature', units: 'english', time_zone: 'lst_ldt',
+      format: 'json', application: 'EvenTide' }));
+
+    // Ocean water temp from NDBC buoy (more accurate than harbor water)
+    const buoyUrl = `${NDBC_URL}/${BUOY_ID}.txt`;
+    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(buoyUrl)}`;
+    const waterResponse = await fetch(proxyUrl);
+
     let airTemp = null, waterTemp = null;
+
     if (airResponse.ok) {
       const d = await airResponse.json();
       if (d.data?.length > 0) airTemp = parseFloat(d.data[0].v);
     }
+
     if (waterResponse.ok) {
-      const d = await waterResponse.json();
-      if (d.data?.length > 0) waterTemp = parseFloat(d.data[0].v);
+      const text = await waterResponse.text();
+      const lines = text.trim().split('\n').filter(line => !line.startsWith('#'));
+      if (lines.length > 0) {
+        const latest = lines[0].trim().split(/\s+/);
+        // WTMP is column 14, in Celsius - convert to Fahrenheit
+        const wtmpC = parseFloat(latest[14]);
+        if (!isNaN(wtmpC)) {
+          waterTemp = (wtmpC * 9/5) + 32;
+        }
+      }
     }
+
     return { airTemp, waterTemp };
   });
 }

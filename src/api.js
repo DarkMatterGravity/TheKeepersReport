@@ -220,30 +220,22 @@ function degreesToCardinal(degrees) {
   return directions[index];
 }
 
-// Fetch air and water temperature from NOAA
+// Fetch air temp from NOAA, ocean water temp from NDBC buoy
 async function fetchTemperatures() {
   return fetchWithCache('temps', async () => {
-    // Fetch both temperatures in parallel
-    const [airResponse, waterResponse] = await Promise.all([
-      fetch(buildUrl({
-        date: 'latest',
-        station: STATION_ID,
-        product: 'air_temperature',
-        units: 'english',
-        time_zone: 'lst_ldt',
-        format: 'json',
-        application: 'EvenTide'
-      })),
-      fetch(buildUrl({
-        date: 'latest',
-        station: STATION_ID,
-        product: 'water_temperature',
-        units: 'english',
-        time_zone: 'lst_ldt',
-        format: 'json',
-        application: 'EvenTide'
-      }))
-    ]);
+    // Air temp from NOAA tide station
+    const airResponse = await fetch(buildUrl({
+      date: 'latest',
+      station: STATION_ID,
+      product: 'air_temperature',
+      units: 'english',
+      time_zone: 'lst_ldt',
+      format: 'json',
+      application: 'EvenTide'
+    }));
+
+    // Ocean water temp from NDBC buoy (more accurate than harbor)
+    const waterResponse = await fetch(`${NDBC_URL}/${BUOY_ID}.txt`);
 
     let airTemp = null;
     let waterTemp = null;
@@ -256,9 +248,15 @@ async function fetchTemperatures() {
     }
 
     if (waterResponse.ok) {
-      const waterData = await waterResponse.json();
-      if (waterData.data && waterData.data.length > 0) {
-        waterTemp = parseFloat(waterData.data[0].v);
+      const text = await waterResponse.text();
+      const lines = text.trim().split('\n').filter(line => !line.startsWith('#'));
+      if (lines.length > 0) {
+        const latest = lines[0].trim().split(/\s+/);
+        // WTMP is column 14, in Celsius - convert to Fahrenheit
+        const wtmpC = parseFloat(latest[14]);
+        if (!isNaN(wtmpC)) {
+          waterTemp = (wtmpC * 9/5) + 32;
+        }
       }
     }
 
