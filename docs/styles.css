@@ -323,16 +323,16 @@ body {
   padding: 8px 14px;
   margin: -4px 0;
   border-radius: 10px;
-  background: #ecc94b;
-  transition: background 0.2s, transform 0.1s;
+  background: linear-gradient(to top, #ed8936, #ecc94b);
+  transition: filter 0.2s, transform 0.1s;
 }
 
 .wave-link:hover {
-  background: #d69e2e;
+  filter: brightness(1.05);
 }
 
 .wave-link:active {
-  background: #b7791f;
+  filter: brightness(0.95);
   transform: scale(0.98);
 }
 
@@ -353,7 +353,7 @@ body {
 }
 
 .surf-forecast-label {
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -496,17 +496,17 @@ body {
     justify-content: space-around;
     padding: 12px;
     margin: 0;
-    background: #ecc94b;
+    background: linear-gradient(to top, #ed8936, #ecc94b);
     border-radius: 12px;
   }
 
   .wave-link:hover {
-    background: #d69e2e;
+    filter: brightness(1.05);
   }
 
   .surf-forecast-label {
     writing-mode: horizontal-tb;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
   }
 }
 
