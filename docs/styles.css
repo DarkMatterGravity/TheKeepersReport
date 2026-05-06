@@ -335,11 +335,17 @@ body {
   }
 
   .header-info {
+    display: flex;
+    gap: 12px;
+  }
+
+  /* Hide sunrise/sunset on mobile, show temps */
+  .header-info .info-group:first-child {
     display: none;
   }
 
-  .time-value {
-    font-size: 1.2rem;
+  .current-time {
+    display: none;
   }
 
   .main-content {
