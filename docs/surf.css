@@ -164,13 +164,51 @@ body {
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hourly-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.hourly-header h2 {
+  margin: 0;
 }
 
 .hourly-section h2 {
   font-size: 0.8rem;
   color: var(--text-muted);
   letter-spacing: 1px;
-  margin-bottom: 12px;
+}
+
+.expand-hint {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.close-btn {
+  display: none;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.close-btn:hover {
+  background: var(--border-color);
+  color: var(--text-primary);
 }
 
 .hourly-list {
@@ -179,6 +217,37 @@ body {
   gap: 4px;
   max-height: 300px;
   overflow-y: auto;
+}
+
+/* Expanded fullscreen state */
+.hourly-section.expanded {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  border-radius: 0;
+  margin: 0;
+  padding: 16px;
+  padding-top: 60px;
+}
+
+.hourly-section.expanded .hourly-header {
+  display: none;
+}
+
+.hourly-section.expanded .close-btn {
+  display: flex;
+}
+
+.hourly-section.expanded .hourly-list {
+  max-height: none;
+  height: 100%;
+}
+
+body.hourly-expanded {
+  overflow: hidden;
 }
 
 .hourly-item {

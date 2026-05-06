@@ -336,6 +336,15 @@ body {
   transform: scale(0.98);
 }
 
+.wave-link:focus {
+  outline: none;
+}
+
+.wave-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
 .wave-link .level-label {
   color: #744210;
 }

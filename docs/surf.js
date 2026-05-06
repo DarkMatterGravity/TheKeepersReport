@@ -3,6 +3,13 @@
 const SANDY_HOOK_LAT = 40.4667;
 const SANDY_HOOK_LNG = -74.01;
 
+// Toggle hourly section expand/collapse
+function toggleHourlyExpand() {
+  const section = document.getElementById('hourlySection');
+  section.classList.toggle('expanded');
+  document.body.classList.toggle('hourly-expanded');
+}
+
 // Sandy Hook optimal conditions
 const OPTIMAL = {
   swellDirs: [90, 112.5, 135], // E, ESE, SE
