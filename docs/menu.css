@@ -49,13 +49,14 @@ body {
 
 .logo-circle {
   position: absolute;
-  width: 70vmin;
-  height: 70vmin;
-  max-width: 500px;
-  max-height: 500px;
+  width: 80vmin;
+  height: 80vmin;
+  max-width: 575px;
+  max-height: 575px;
   border-radius: 50%;
   background: var(--logo-blue-light);
   opacity: 0.15;
+  transform: translateY(-20px);
 }
 
 .logo {
