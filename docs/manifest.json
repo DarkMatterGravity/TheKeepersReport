@@ -2,7 +2,7 @@
   "name": "EvenTide - Sandy Hook Tides",
   "short_name": "EvenTide",
   "description": "Real-time tide information for Sandy Hook, NJ",
-  "start_url": ".",
+  "start_url": "./menu.html",
   "display": "standalone",
   "background_color": "#0f0f1a",
   "theme_color": "#0f0f1a",

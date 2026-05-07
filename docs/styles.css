@@ -55,6 +55,21 @@ body {
   gap: 10px;
 }
 
+.back-btn {
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  margin: -8px;
+  margin-right: 4px;
+  border-radius: 8px;
+}
+
+.back-btn:hover {
+  background: var(--bg-card);
+}
+
 .title-section h1 {
   font-size: 1.2rem;
   font-weight: 700;

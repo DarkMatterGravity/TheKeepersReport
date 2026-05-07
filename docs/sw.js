@@ -1,6 +1,9 @@
-const CACHE_NAME = 'eventide-v2';
+const CACHE_NAME = 'eventide-v3';
 const urlsToCache = [
   './',
+  './menu.html',
+  './menu.css',
+  './KeeperLogo.png',
   './index.html',
   './styles.css',
   './app.js',

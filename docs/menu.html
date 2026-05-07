@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0f0f1a">
+  <title>EvenTide</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+  <div class="menu-container">
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="KeeperLogo.png" alt="Keeper Logo" class="logo">
+    </div>
+
+    <!-- Navigation Buttons -->
+    <nav class="menu-buttons">
+      <a href="index.html" class="menu-btn">Tide</a>
+      <a href="surf.html" class="menu-btn">Surf</a>
+    </nav>
+  </div>
+
+  <!-- Register Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed:', err));
+    }
+  </script>
+</body>
+</html>
