@@ -55,8 +55,8 @@ body {
   max-width: 660px;
   max-height: 660px;
   border-radius: 50%;
-  background: var(--circle-blue);
-  opacity: 0.25;
+  background: #b8cce8;
+  opacity: 0.5;
   transform: translateY(-20px);
 }
 
@@ -84,10 +84,10 @@ body {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: var(--btn-text);
+  color: #e8f0fc;
   border-radius: 12px;
   background: transparent;
-  border: 2px solid var(--btn-border);
+  border: 2px solid #c8d8f0;
   font-size: 1.1rem;
   font-weight: 800;
   text-transform: uppercase;
