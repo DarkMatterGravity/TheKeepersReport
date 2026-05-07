@@ -45,8 +45,9 @@ body {
 
 .logo {
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   height: auto;
+  padding: 0 20px;
 }
 
 /* Navigation Buttons */
@@ -55,20 +56,20 @@ body {
   gap: 12px;
   padding: 20px;
   width: 100%;
-  max-width: 320px;
+  max-width: 280px;
 }
 
 .menu-btn {
   flex: 1;
-  padding: 14px 20px;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   color: #1a1a2e;
-  border-radius: 12px;
+  border-radius: 10px;
   background: linear-gradient(to top, #ed8936, #ecc94b);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
