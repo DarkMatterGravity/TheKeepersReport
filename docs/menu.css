@@ -52,7 +52,7 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 .surfer {
@@ -65,27 +65,27 @@ body {
 /* Navigation Buttons */
 .menu-buttons {
   display: flex;
-  gap: 20px;
-  padding: 20px;
-  padding-bottom: max(25px, env(safe-area-inset-bottom, 25px));
+  gap: 16px;
+  padding: 15px;
+  padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
   width: 100%;
-  max-width: 420px;
+  max-width: 340px;
   margin: 0 auto;
   flex-shrink: 0;
 }
 
 .menu-btn {
   flex: 1;
-  padding: 17px 24px;
+  padding: 14px 19px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   color: #05203f;
-  border-radius: 14px;
+  border-radius: 11px;
   background: #d4c1a7;
   border: none;
-  font-size: 1.7rem;
+  font-size: 1.35rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -113,8 +113,8 @@ body {
 /* Mobile adjustments */
 @media (max-width: 500px) {
   .menu-btn {
-    font-size: 1.5rem;
-    padding: 14px 20px;
+    font-size: 1.2rem;
+    padding: 11px 16px;
   }
 
   .logo {
@@ -134,7 +134,7 @@ body {
   }
 
   .menu-btn {
-    padding: 12px 18px;
-    font-size: 1.3rem;
+    padding: 10px 14px;
+    font-size: 1.05rem;
   }
 }
