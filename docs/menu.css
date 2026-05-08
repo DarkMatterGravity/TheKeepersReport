@@ -25,7 +25,7 @@ html, body {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  background: #f0ebe3;
+  background: #05203f;
   color: var(--text-primary);
 }
 
@@ -76,10 +76,10 @@ body {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: #000000;
+  color: #d4c1a7;
   border-radius: 12px;
   background: transparent;
-  border: 2px solid #000000;
+  border: 2px solid #d4c1a7;
   font-size: 1.1rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -88,11 +88,11 @@ body {
 }
 
 .menu-btn:hover {
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(212, 193, 167, 0.1);
 }
 
 .menu-btn:active {
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(212, 193, 167, 0.2);
   transform: scale(0.98);
 }
 
@@ -101,7 +101,7 @@ body {
 }
 
 .menu-btn:focus-visible {
-  outline: 2px solid #1a1a1a;
+  outline: 2px solid #d4c1a7;
   outline-offset: 2px;
 }
 

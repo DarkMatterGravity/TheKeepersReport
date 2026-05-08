@@ -3,7 +3,7 @@ const urlsToCache = [
   './',
   './menu.html',
   './menu.css',
-  './KeeperLogo.jpeg',
+  './KeeperLogo.png',
   './index.html',
   './styles.css',
   './app.js',
