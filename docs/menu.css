@@ -53,8 +53,8 @@ body {
 }
 
 .logo {
-  width: 170vmin;
-  max-width: 1200px;
+  width: 220vmin;
+  max-width: 1560px;
   height: auto;
   position: relative;
   z-index: 1;
@@ -76,10 +76,10 @@ body {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: #d4c1a7;
+  color: #05203f;
   border-radius: 12px;
-  background: transparent;
-  border: 2px solid #d4c1a7;
+  background: #d4c1a7;
+  border: none;
   font-size: 1.1rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -88,11 +88,11 @@ body {
 }
 
 .menu-btn:hover {
-  background: rgba(212, 193, 167, 0.1);
+  background: #e0d0b8;
 }
 
 .menu-btn:active {
-  background: rgba(212, 193, 167, 0.2);
+  background: #c8b296;
   transform: scale(0.98);
 }
 
