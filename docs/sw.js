@@ -1,4 +1,4 @@
-const CACHE_NAME = 'eventide-v3';
+const CACHE_NAME = 'eventide-v4';
 const urlsToCache = [
   './',
   './menu.html',
