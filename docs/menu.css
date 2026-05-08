@@ -40,14 +40,13 @@ body {
 
 .logo {
   width: 110%;
-  max-height: 58vh;
+  max-height: 68vh;
   object-fit: contain;
   object-position: top center;
 }
 
 /* Surfer Image */
 .surfer-container {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,7 +56,7 @@ body {
 
 .surfer {
   width: 90%;
-  max-height: 100%;
+  max-height: 18vh;
   object-fit: contain;
 }
 
