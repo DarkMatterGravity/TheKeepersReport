@@ -1,4 +1,4 @@
-// EvenTide PWA - Combined API and Renderer
+// KeepersReport PWA - Combined API and Renderer
 
 // ============================================
 // API MODULE
@@ -61,7 +61,7 @@ async function fetchPredictions(date = new Date()) {
     const url = buildUrl({
       begin_date: dateStr, end_date: dateStr, station: STATION_ID,
       product: 'predictions', datum: 'MLLW', units: 'english',
-      time_zone: 'lst_ldt', format: 'json', application: 'EvenTide'
+      time_zone: 'lst_ldt', format: 'json', application: 'KeepersReport'
     });
     const response = await fetch(url);
     if (!response.ok) throw new Error('Failed to fetch predictions');
@@ -77,7 +77,7 @@ async function fetchHighLow(date = new Date()) {
     const url = buildUrl({
       begin_date: dateStr, end_date: dateStr, station: STATION_ID,
       product: 'predictions', datum: 'MLLW', units: 'english',
-      time_zone: 'lst_ldt', interval: 'hilo', format: 'json', application: 'EvenTide'
+      time_zone: 'lst_ldt', interval: 'hilo', format: 'json', application: 'KeepersReport'
     });
     const response = await fetch(url);
     if (!response.ok) throw new Error('Failed to fetch high/low');
@@ -93,7 +93,7 @@ async function fetchObserved(date = new Date()) {
     const url = buildUrl({
       begin_date: dateStr, end_date: dateStr, station: STATION_ID,
       product: 'water_level', datum: 'MLLW', units: 'english',
-      time_zone: 'lst_ldt', format: 'json', application: 'EvenTide'
+      time_zone: 'lst_ldt', format: 'json', application: 'KeepersReport'
     });
     const response = await fetch(url);
     if (!response.ok) throw new Error('Failed to fetch observed');
@@ -134,7 +134,7 @@ async function fetchTemperatures() {
     // Air temp from NOAA tide station
     const airResponse = await fetch(buildUrl({ date: 'latest', station: STATION_ID,
       product: 'air_temperature', units: 'english', time_zone: 'lst_ldt',
-      format: 'json', application: 'EvenTide' }));
+      format: 'json', application: 'KeepersReport' }));
 
     // Ocean water temp from NDBC buoy (more accurate than harbor water)
     const buoyUrl = `${NDBC_URL}/${BUOY_ID}.txt`;

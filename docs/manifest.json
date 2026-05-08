@@ -1,7 +1,7 @@
 {
-  "name": "EvenTide - Sandy Hook Tides",
-  "short_name": "EvenTide",
-  "description": "Real-time tide information for Sandy Hook, NJ",
+  "name": "The Keepers Report",
+  "short_name": "Keepers",
+  "description": "Surf and tide report for Sandy Hook, NJ",
   "start_url": "./menu.html",
   "display": "standalone",
   "background_color": "#0f0f1a",
