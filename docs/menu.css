@@ -21,6 +21,7 @@
 html, body {
   height: 100%;
   overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
@@ -46,6 +47,8 @@ body {
   justify-content: center;
   width: 100%;
   position: relative;
+  overflow: visible;
+  min-height: 0;
 }
 
 .logo-circle {
@@ -53,8 +56,8 @@ body {
 }
 
 .logo {
-  width: 220vmin;
-  max-width: 1560px;
+  width: 95%;
+  max-width: none;
   height: auto;
   position: relative;
   z-index: 1;
@@ -113,11 +116,6 @@ body {
   }
 
   .logo {
-    width: 90vmin;
-  }
-
-  .logo-circle {
-    width: 75vmin;
-    height: 75vmin;
+    width: 100%;
   }
 }
