@@ -40,10 +40,11 @@ body {
 }
 
 .logo {
-  width: 120%;
-  max-height: 75vh;
+  width: 126%;
+  max-height: 79vh;
   object-fit: contain;
   object-position: top center;
+  margin-top: 10px;
 }
 
 /* Surfer Image */
