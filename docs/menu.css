@@ -6,14 +6,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  --bg-primary: #0f0f1a;
-  --bg-secondary: #1a1a2e;
-  --text-primary: #edf2f7;
-  --text-muted: #718096;
-  --border-color: #2d3748;
-}
-
 html, body {
   height: 100%;
   overflow: hidden;
@@ -22,17 +14,14 @@ html, body {
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   background: #05203f;
-  color: var(--text-primary);
+  color: #edf2f7;
 }
 
 .menu-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   height: 100%;
   height: 100dvh;
-  padding: 0 20px;
-  padding-bottom: 100px;
   position: relative;
 }
 
@@ -42,8 +31,7 @@ body {
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .logo-circle {
@@ -52,39 +40,37 @@ body {
 
 .logo {
   width: 110%;
-  max-width: none;
-  height: auto;
-  position: relative;
-  z-index: 0;
+  max-height: 58vh;
+  object-fit: contain;
+  object-position: top center;
 }
 
 /* Surfer Image */
 .surfer-container {
-  position: relative;
-  width: 100%;
+  flex: 1;
   display: flex;
   justify-content: center;
-  z-index: 0;
-  margin-top: -40px;
-  flex: 1;
-  align-items: flex-end;
+  align-items: center;
+  overflow: hidden;
+  padding: 0 20px;
 }
 
 .surfer {
-  width: 85%;
-  max-width: 450px;
-  height: auto;
+  width: 80%;
+  max-width: 400px;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 /* Navigation Buttons */
 .menu-buttons {
   display: flex;
   gap: 20px;
-  padding: 0 20px;
+  padding: 20px;
+  padding-bottom: max(25px, env(safe-area-inset-bottom, 25px));
   width: 100%;
-  max-width: 400px;
-  position: relative;
-  z-index: 1;
+  max-width: 420px;
+  margin: 0 auto;
   flex-shrink: 0;
 }
 
@@ -133,9 +119,22 @@ body {
 
   .logo {
     width: 115%;
+    max-height: 55vh;
   }
 
   .surfer {
-    width: 90%;
+    width: 85%;
+  }
+}
+
+/* Short screens */
+@media (max-height: 700px) {
+  .logo {
+    max-height: 50vh;
+  }
+
+  .menu-btn {
+    padding: 12px 18px;
+    font-size: 1.3rem;
   }
 }
