@@ -40,8 +40,8 @@ body {
 }
 
 .logo {
-  width: 110%;
-  max-height: 68vh;
+  width: 120%;
+  max-height: 75vh;
   object-fit: contain;
   object-position: top center;
 }
@@ -57,7 +57,7 @@ body {
 
 .surfer {
   width: 90%;
-  max-height: 14vh;
+  max-height: 17vh;
   object-fit: contain;
 }
 
