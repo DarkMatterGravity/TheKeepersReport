@@ -82,9 +82,9 @@ body {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: #05203f;
+  color: #1a1a2e;
   border-radius: 11px;
-  background: #d4c1a7;
+  background: linear-gradient(to top, #ed8936, #ecc94b);
   border: none;
   font-size: 1.35rem;
   font-weight: 800;
@@ -94,11 +94,11 @@ body {
 }
 
 .menu-btn:hover {
-  background: #e0d0b8;
+  filter: brightness(1.05);
 }
 
 .menu-btn:active {
-  background: #c8b296;
+  filter: brightness(0.95);
   transform: scale(0.98);
 }
 
