@@ -91,7 +91,7 @@ body {
 .rating-good { background: #68d391; color: #1a1a2e; }
 .rating-fair { background: var(--accent-yellow); color: #1a1a2e; }
 .rating-poor { background: var(--accent-orange); color: #1a1a2e; }
-.rating-flat { background: var(--text-muted); color: var(--text-primary); }
+.rating-flat { background: #718096; color: var(--text-primary); }
 
 /* Current Conditions */
 .current-section {
@@ -268,7 +268,7 @@ body {
 .hourly-bar.good { background: #68d391; }
 .hourly-bar.fair { background: var(--accent-yellow); }
 .hourly-bar.poor { background: var(--accent-orange); }
-.hourly-bar.flat { background: var(--text-muted); }
+.hourly-bar.flat { background: #718096; }
 
 .hourly-height {
   font-size: 0.9rem;
