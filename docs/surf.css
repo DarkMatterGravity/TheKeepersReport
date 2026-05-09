@@ -79,6 +79,28 @@ body {
   color: var(--text-muted);
 }
 
+.sun-times {
+  display: none;
+  gap: 12px;
+  align-items: center;
+}
+
+.sun-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sun-icon {
+  font-size: 0.9rem;
+}
+
+.sun-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
 .rating {
   padding: 6px 12px;
   border-radius: 6px;
@@ -91,7 +113,7 @@ body {
 .rating-good { background: #68d391; color: #1a1a2e; }
 .rating-fair { background: var(--accent-yellow); color: #1a1a2e; }
 .rating-poor { background: var(--accent-orange); color: #1a1a2e; }
-.rating-flat { background: #718096; color: var(--text-primary); }
+.rating-flat { background: #4a5568; color: var(--text-primary); }
 
 /* Current Conditions */
 .current-section {
@@ -268,7 +290,7 @@ body {
 .hourly-bar.good { background: #68d391; }
 .hourly-bar.fair { background: var(--accent-yellow); }
 .hourly-bar.poor { background: var(--accent-orange); }
-.hourly-bar.flat { background: #718096; }
+.hourly-bar.flat { background: #4a5568; }
 
 .hourly-height {
   font-size: 0.9rem;
@@ -336,6 +358,10 @@ body {
 
 /* Mobile */
 @media (max-width: 500px) {
+  .sun-times {
+    display: flex;
+  }
+
   .condition-cards {
     grid-template-columns: repeat(2, 1fr);
   }

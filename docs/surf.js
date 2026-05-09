@@ -39,7 +39,37 @@ let forecastChart = null;
 document.addEventListener('DOMContentLoaded', init);
 
 async function init() {
-  await loadForecast();
+  await Promise.all([
+    loadForecast(),
+    loadSunTimes()
+  ]);
+}
+
+async function loadSunTimes() {
+  try {
+    const url = `https://api.sunrise-sunset.org/json?lat=${SANDY_HOOK_LAT}&lng=${SANDY_HOOK_LNG}&formatted=0`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.status === 'OK') {
+      const sunrise = new Date(data.results.sunrise);
+      const sunset = new Date(data.results.sunset);
+
+      document.getElementById('sunriseTime').textContent = sunrise.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+
+      document.getElementById('sunsetTime').textContent = sunset.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+    }
+  } catch (error) {
+    console.error('Failed to load sun times:', error);
+  }
 }
 
 async function loadForecast() {
