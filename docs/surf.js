@@ -86,11 +86,7 @@ function updateLocationName() {
 }
 
 async function switchLocation(locationId) {
-  console.log('Switching to:', locationId);
-  if (!LOCATIONS[locationId]) {
-    console.error('Unknown location:', locationId);
-    return;
-  }
+  if (!LOCATIONS[locationId]) return;
   currentLocation = locationId;
 
   // Show loading state
@@ -99,15 +95,10 @@ async function switchLocation(locationId) {
   document.getElementById('currentSwellDir').textContent = '--';
   document.getElementById('currentWind').textContent = '--';
 
-  try {
-    await Promise.all([
-      loadForecast(),
-      loadSunTimes()
-    ]);
-    console.log('Location loaded:', locationId);
-  } catch (err) {
-    console.error('Failed to load location:', err);
-  }
+  await Promise.all([
+    loadForecast(),
+    loadSunTimes()
+  ]);
 }
 
 async function loadSunTimes() {
