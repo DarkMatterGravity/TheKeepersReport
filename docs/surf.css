@@ -144,29 +144,27 @@ body {
 
 .visual-scene {
   position: relative;
-  height: 140px;
+  height: 100px;
   flex: 1;
   display: flex;
+  flex-direction: row;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 0;
 }
 
 .surfer-img {
-  height: 80px;
+  height: 60px;
   width: auto;
-  position: relative;
-  z-index: 2;
   flex-shrink: 0;
 }
 
 .wave-img {
-  height: 80px;
+  height: 60px;
   width: auto;
-  position: relative;
-  z-index: 1;
-  transform-origin: bottom center;
+  transform-origin: bottom left;
   animation: waveBob 4s ease-in-out infinite;
-  margin-left: -10px;
+  margin-left: -5px;
 }
 
 @keyframes waveBob {
@@ -487,19 +485,23 @@ body {
   }
 
   .visual-scene {
-    height: 120px;
+    height: 90px;
   }
 
   .surfer-img {
-    height: 70px;
+    height: 55px;
   }
 
   .wave-img {
-    height: 70px;
+    height: 55px;
   }
 
   .stat-value {
     font-size: 2rem;
+  }
+
+  .wave-visual {
+    gap: 12px;
   }
 
   .hourly-item {

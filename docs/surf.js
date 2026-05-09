@@ -255,30 +255,28 @@ function updateWaveScale(waveHeightFt) {
   const surferImg = document.getElementById('surferImg');
   if (!waveImg || !surferImg) return;
 
-  // Surfer is 6ft reference, base wave height in image represents ~10ft
-  // So we scale relative to that
-  const SURFER_HEIGHT = 6; // feet
-  const BASE_WAVE_HEIGHT = 10; // what the wave image represents at 100%
-  const SURFER_BASE_PX = 80; // base surfer height in pixels
+  // Surfer is 6ft reference
+  const SURFER_HEIGHT_FT = 6;
+  const SURFER_BASE_PX = 60; // matches CSS
 
-  // Calculate wave scale: if wave is 6ft, it should be same height as surfer
-  // Wave image at 100% = 10ft, so 6ft = 60% scale
-  let waveScale = waveHeightFt / BASE_WAVE_HEIGHT;
+  // Wave scales relative to surfer: 6ft wave = same height as surfer
+  // waveHeightFt / SURFER_HEIGHT_FT gives us the ratio
+  let waveScale = waveHeightFt / SURFER_HEIGHT_FT;
 
-  // Clamp wave scale between 0.2 (2ft) and 2.5 (25ft for normal spots)
-  waveScale = Math.max(0.2, Math.min(2.5, waveScale));
+  // Clamp wave scale between 0.15 (tiny) and 2 (12ft)
+  waveScale = Math.max(0.15, Math.min(2, waveScale));
 
-  // For giant waves (>15ft), start scaling down the surfer instead
   let surferScale = 1;
-  if (waveHeightFt > 15) {
-    // Wave maxes out, surfer shrinks
-    waveScale = 1.5; // cap wave at 15ft visual
-    surferScale = 15 / waveHeightFt; // surfer gets smaller
-    surferScale = Math.max(0.3, surferScale); // don't go below 30%
+
+  // For giant waves (>12ft), cap wave and shrink surfer instead
+  if (waveHeightFt > 12) {
+    waveScale = 2; // cap at 2x
+    surferScale = 12 / waveHeightFt;
+    surferScale = Math.max(0.25, surferScale);
   }
 
-  // Apply scales (wave already has animation, we modify the base)
-  waveImg.style.height = `${80 * waveScale}px`;
+  // Apply scales
+  waveImg.style.height = `${SURFER_BASE_PX * waveScale}px`;
   surferImg.style.height = `${SURFER_BASE_PX * surferScale}px`;
 }
 
