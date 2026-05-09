@@ -237,9 +237,49 @@ function displayCurrentConditions(current) {
   document.getElementById('currentSwellDir').textContent = current.swellDirText;
   document.getElementById('currentWind').textContent = Math.round(current.windSpeed);
 
+  const windDirEl = document.getElementById('currentWindDir');
+  if (windDirEl) {
+    windDirEl.textContent = current.windDirText;
+  }
+
   const ratingEl = document.getElementById('currentRating');
   ratingEl.textContent = current.rating.label;
   ratingEl.className = `rating rating-${current.rating.className}`;
+
+  // Scale wave image based on wave height (6ft surfer = reference)
+  updateWaveScale(current.waveHeight);
+}
+
+function updateWaveScale(waveHeightFt) {
+  const waveImg = document.getElementById('waveImg');
+  const surferImg = document.getElementById('surferImg');
+  if (!waveImg || !surferImg) return;
+
+  // Surfer is 6ft reference, base wave height in image represents ~10ft
+  // So we scale relative to that
+  const SURFER_HEIGHT = 6; // feet
+  const BASE_WAVE_HEIGHT = 10; // what the wave image represents at 100%
+  const SURFER_BASE_PX = 80; // base surfer height in pixels
+
+  // Calculate wave scale: if wave is 6ft, it should be same height as surfer
+  // Wave image at 100% = 10ft, so 6ft = 60% scale
+  let waveScale = waveHeightFt / BASE_WAVE_HEIGHT;
+
+  // Clamp wave scale between 0.2 (2ft) and 2.5 (25ft for normal spots)
+  waveScale = Math.max(0.2, Math.min(2.5, waveScale));
+
+  // For giant waves (>15ft), start scaling down the surfer instead
+  let surferScale = 1;
+  if (waveHeightFt > 15) {
+    // Wave maxes out, surfer shrinks
+    waveScale = 1.5; // cap wave at 15ft visual
+    surferScale = 15 / waveHeightFt; // surfer gets smaller
+    surferScale = Math.max(0.3, surferScale); // don't go below 30%
+  }
+
+  // Apply scales (wave already has animation, we modify the base)
+  waveImg.style.height = `${80 * waveScale}px`;
+  surferImg.style.height = `${SURFER_BASE_PX * surferScale}px`;
 }
 
 function displayHourlyForecast(forecast) {

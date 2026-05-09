@@ -43,26 +43,27 @@
 
     <!-- Current Conditions -->
     <section class="current-section">
-      <div class="condition-cards">
-        <div class="condition-card">
-          <span class="card-label">WAVES</span>
-          <span id="currentWaveHeight" class="card-value">--</span>
-          <span class="card-unit">ft</span>
+      <h2>Current Conditions</h2>
+      <div class="wave-visual">
+        <div class="visual-scene">
+          <img src="SurferStanding.png" alt="Surfer" class="surfer-img" id="surferImg">
+          <img src="WaveProfile.png" alt="Wave" class="wave-img" id="waveImg">
         </div>
-        <div class="condition-card">
-          <span class="card-label">PERIOD</span>
-          <span id="currentPeriod" class="card-value">--</span>
-          <span class="card-unit">sec</span>
-        </div>
-        <div class="condition-card">
-          <span class="card-label">SWELL</span>
-          <span id="currentSwellDir" class="card-value">--</span>
-          <span class="card-unit"></span>
-        </div>
-        <div class="condition-card">
-          <span class="card-label">WIND</span>
-          <span id="currentWind" class="card-value">--</span>
-          <span class="card-unit">mph</span>
+        <div class="visual-stats">
+          <div class="stat-primary">
+            <span id="currentWaveHeight" class="stat-value">--</span>
+            <span class="stat-unit">ft</span>
+          </div>
+          <div class="stat-secondary">
+            <span id="currentPeriod" class="stat-period">--</span><span class="stat-label">s</span>
+            <span class="stat-divider">·</span>
+            <span id="currentSwellDir" class="stat-dir">--</span>
+          </div>
+          <div class="stat-wind">
+            <span id="currentWind" class="stat-wind-val">--</span>
+            <span class="stat-label">mph</span>
+            <span id="currentWindDir" class="stat-wind-dir"></span>
+          </div>
         </div>
       </div>
     </section>

@@ -123,40 +123,129 @@ body {
 /* Current Conditions */
 .current-section {
   margin-bottom: 12px;
-}
-
-.condition-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-}
-
-.condition-card {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  padding: 12px 8px;
-  text-align: center;
+  padding: 16px;
 }
 
-.card-label {
-  display: block;
-  font-size: 0.6rem;
+.current-section h2 {
+  font-size: 0.8rem;
   color: var(--text-muted);
   letter-spacing: 1px;
-  margin-bottom: 4px;
+  margin-bottom: 12px;
 }
 
-.card-value {
-  display: block;
-  font-size: 1.5rem;
+.wave-visual {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.visual-scene {
+  position: relative;
+  height: 140px;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.surfer-img {
+  height: 80px;
+  width: auto;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.wave-img {
+  height: 80px;
+  width: auto;
+  position: relative;
+  z-index: 1;
+  transform-origin: bottom center;
+  animation: waveBob 4s ease-in-out infinite;
+  margin-left: -10px;
+}
+
+@keyframes waveBob {
+  0%, 100% { transform: scaleY(1) scaleX(1); }
+  50% { transform: scaleY(1.03) scaleX(0.98); }
+}
+
+.visual-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+}
+
+.stat-primary {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.stat-value {
+  font-size: 2.5rem;
   font-weight: 700;
   color: var(--accent-blue);
+  line-height: 1;
 }
 
-.card-unit {
-  font-size: 0.7rem;
+.stat-unit {
+  font-size: 1rem;
   color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.stat-secondary {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.stat-period {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.stat-divider {
+  color: var(--text-muted);
+  margin: 0 4px;
+}
+
+.stat-dir {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-green);
+}
+
+.stat-wind {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.stat-wind-val {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.stat-wind-dir {
+  color: var(--text-muted);
 }
 
 /* Chart Section */
@@ -397,12 +486,20 @@ body {
     gap: 16px;
   }
 
-  .condition-cards {
-    grid-template-columns: repeat(2, 1fr);
+  .visual-scene {
+    height: 120px;
   }
 
-  .card-value {
-    font-size: 1.3rem;
+  .surfer-img {
+    height: 70px;
+  }
+
+  .wave-img {
+    height: 70px;
+  }
+
+  .stat-value {
+    font-size: 2rem;
   }
 
   .hourly-item {
