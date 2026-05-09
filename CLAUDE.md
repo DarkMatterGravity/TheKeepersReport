@@ -3,7 +3,17 @@
 ## Current State
 - Surf forecast app for Sandy Hook, NJ
 - Uses Open-Meteo Marine + Weather APIs, Sunrise-Sunset.org
-- Uncommitted work: sunrise/sunset display (mobile only), flat rating color tweak, updated Surfer.png
+- Mobile-first development approach (desktop features lagging behind)
+
+### Recently Completed
+- Sunrise/sunset times display (mobile only) - fetches from sunrise-sunset.org API
+- Two-row header layout on mobile:
+  - Top row: back button + "SURF FORECAST" + location name (right-aligned)
+  - Bottom row: sun times (left) + rating badge (right)
+- Flat rating color tweaked to darker gray (#4a5568)
+
+### Uncommitted
+- Updated Surfer.png (can commit later if needed)
 
 ## Planned Feature: Multi-Location Support
 
@@ -107,3 +117,8 @@ Users can search any coastal location worldwide, automatically detect beach orie
 - Inland location → "Not near coast" error
 - API errors → graceful fallback with retry
 - 5 favorites limit → must remove one to add new
+
+## Workflow Preferences
+- Commit and push after every change (user wants to see changes live on GitHub Pages immediately)
+- Mobile-first development - desktop features can lag behind
+- GitHub Pages serves from `docs/` folder on master branch
