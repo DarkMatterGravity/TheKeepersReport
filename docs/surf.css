@@ -154,16 +154,17 @@ body {
 
 .surfer-img {
   display: block;
-  height: 100px;
+  height: 120px;
   width: auto;
 }
 
 .wave-svg {
-  height: 100px;
+  height: 120px;
   width: auto;
   transform-origin: bottom left;
   animation: waveBob 4s ease-in-out infinite;
   margin-left: -5px;
+  overflow: visible;
 }
 
 @keyframes waveBob {
@@ -484,11 +485,11 @@ body {
   }
 
   .surfer-img {
-    height: 90px;
+    height: 110px;
   }
 
   .wave-svg {
-    height: 90px;
+    height: 110px;
   }
 
   .stat-value {

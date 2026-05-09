@@ -257,7 +257,7 @@ function updateWaveScale(waveHeightFt) {
 
   // Surfer is 6ft reference
   const SURFER_HEIGHT_FT = 6;
-  const SURFER_BASE_PX = 100; // matches CSS base height
+  const SURFER_BASE_PX = 120; // matches CSS base height
 
   // Wave scales relative to surfer: 6ft wave = same height as surfer
   let waveScale = waveHeightFt / SURFER_HEIGHT_FT;
