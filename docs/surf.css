@@ -159,6 +159,7 @@ body {
   width: auto;
   position: relative;
   z-index: 2;
+  opacity: 0.6;
 }
 
 .wave-line {
