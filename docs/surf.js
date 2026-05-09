@@ -13,8 +13,8 @@ const LOCATIONS = {
   },
   'uluwatu': {
     name: 'Uluwatu, Bali',
-    lat: -8.8155,
-    lng: 115.0892,
+    lat: -8.83,
+    lng: 115.08,
     timezone: 'Asia/Makassar',
     optimal: {
       swellDirs: [180, 202.5, 225], // S, SSW, SW
@@ -86,9 +86,12 @@ function updateLocationName() {
 }
 
 async function switchLocation(locationId) {
-  if (!LOCATIONS[locationId]) return;
+  console.log('Switching to:', locationId);
+  if (!LOCATIONS[locationId]) {
+    console.error('Unknown location:', locationId);
+    return;
+  }
   currentLocation = locationId;
-  updateLocationName();
 
   // Show loading state
   document.getElementById('currentWaveHeight').textContent = '--';
@@ -96,10 +99,15 @@ async function switchLocation(locationId) {
   document.getElementById('currentSwellDir').textContent = '--';
   document.getElementById('currentWind').textContent = '--';
 
-  await Promise.all([
-    loadForecast(),
-    loadSunTimes()
-  ]);
+  try {
+    await Promise.all([
+      loadForecast(),
+      loadSunTimes()
+    ]);
+    console.log('Location loaded:', locationId);
+  } catch (err) {
+    console.error('Failed to load location:', err);
+  }
 }
 
 async function loadSunTimes() {
