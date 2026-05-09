@@ -138,38 +138,35 @@ body {
 
 .wave-visual {
   display: flex;
+  flex-direction: row;
   align-items: flex-end;
+  justify-content: space-between;
   gap: 16px;
+  min-height: 100px;
 }
 
 .visual-scene {
-  position: relative;
-  height: 100px;
-  flex: 1;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  justify-content: flex-start;
-  gap: 0;
-}
-
-.surfer-img {
-  height: 60px;
-  width: auto;
   flex-shrink: 0;
 }
 
+.surfer-img,
 .wave-img {
-  height: 60px;
+  display: block;
+  height: 70px;
   width: auto;
+}
+
+.wave-img {
   transform-origin: bottom left;
   animation: waveBob 4s ease-in-out infinite;
-  margin-left: -5px;
 }
 
 @keyframes waveBob {
   0%, 100% { transform: scaleY(1) scaleX(1); }
-  50% { transform: scaleY(1.03) scaleX(0.98); }
+  50% { transform: scaleY(1.02) scaleX(0.99); }
 }
 
 .visual-stats {
@@ -484,24 +481,13 @@ body {
     gap: 16px;
   }
 
-  .visual-scene {
-    height: 90px;
-  }
-
-  .surfer-img {
-    height: 55px;
-  }
-
+  .surfer-img,
   .wave-img {
-    height: 55px;
+    height: 65px;
   }
 
   .stat-value {
     font-size: 2rem;
-  }
-
-  .wave-visual {
-    gap: 12px;
   }
 
   .hourly-item {

@@ -257,22 +257,21 @@ function updateWaveScale(waveHeightFt) {
 
   // Surfer is 6ft reference
   const SURFER_HEIGHT_FT = 6;
-  const SURFER_BASE_PX = 60; // matches CSS
+  const SURFER_BASE_PX = 70; // matches CSS base height
 
   // Wave scales relative to surfer: 6ft wave = same height as surfer
-  // waveHeightFt / SURFER_HEIGHT_FT gives us the ratio
   let waveScale = waveHeightFt / SURFER_HEIGHT_FT;
 
-  // Clamp wave scale between 0.15 (tiny) and 2 (12ft)
-  waveScale = Math.max(0.15, Math.min(2, waveScale));
+  // Clamp wave scale between 0.1 (tiny) and 2.5 (15ft)
+  waveScale = Math.max(0.1, Math.min(2.5, waveScale));
 
   let surferScale = 1;
 
-  // For giant waves (>12ft), cap wave and shrink surfer instead
-  if (waveHeightFt > 12) {
-    waveScale = 2; // cap at 2x
-    surferScale = 12 / waveHeightFt;
-    surferScale = Math.max(0.25, surferScale);
+  // For giant waves (>15ft), cap wave and shrink surfer instead
+  if (waveHeightFt > 15) {
+    waveScale = 2.5;
+    surferScale = 15 / waveHeightFt;
+    surferScale = Math.max(0.2, surferScale);
   }
 
   // Apply scales
