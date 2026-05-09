@@ -371,7 +371,7 @@ body {
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 12px;
+    gap: 8px;
   }
 
   .header-top {
@@ -382,21 +382,19 @@ body {
   .header-bottom {
     display: flex;
     justify-content: space-between;
-    padding-top: 4px;
+    align-items: center;
+    padding-top: 8px;
   }
 
-  .header h1 {
-    flex: 0;
-    white-space: nowrap;
-  }
-
-  .location {
-    flex: 1;
-    text-align: right;
+  .header-bottom .location {
+    font-size: 0.75rem;
   }
 
   .sun-times {
     display: flex;
+    flex: 1;
+    justify-content: center;
+    gap: 16px;
   }
 
   .condition-cards {
