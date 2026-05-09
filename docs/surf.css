@@ -80,7 +80,7 @@ body {
 }
 
 .location {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
@@ -127,15 +127,11 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 16px;
+  position: relative;
 }
 
 .current-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 12px;
-  width: 100%;
 }
 
 .current-header h2 {
@@ -146,7 +142,9 @@ body {
 }
 
 .current-header .rating {
-  flex-shrink: 0;
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }
 
 .wave-visual {
@@ -483,24 +481,22 @@ body {
   .header-top {
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border-color);
+    justify-content: space-between;
+  }
+
+  .header-top h1 {
+    flex: 0;
   }
 
   .header-bottom {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding-top: 8px;
   }
 
-  .header-bottom .location {
-    font-size: 0.75rem;
-  }
-
   .sun-times {
     display: flex;
-    flex: 1;
-    justify-content: center;
-    gap: 16px;
+    gap: 12px;
   }
 
   .surfer-img {
