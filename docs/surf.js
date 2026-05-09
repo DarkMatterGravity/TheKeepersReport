@@ -162,8 +162,19 @@ async function loadForecast() {
 function processForecast(marineData, windData) {
   const forecast = [];
   const hours = marineData.hourly.time;
+  const now = new Date();
 
-  for (let i = 0; i < Math.min(hours.length, 48); i++) {
+  // Find the index of the current hour (or nearest future hour)
+  let startIndex = 0;
+  for (let i = 0; i < hours.length; i++) {
+    const hourTime = new Date(hours[i]);
+    if (hourTime >= now) {
+      startIndex = i;
+      break;
+    }
+  }
+
+  for (let i = startIndex; i < Math.min(hours.length, startIndex + 48); i++) {
     const time = new Date(hours[i]);
 
     // Use swell height if available, otherwise total wave height
