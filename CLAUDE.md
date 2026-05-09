@@ -6,14 +6,22 @@
 - Mobile-first development approach (desktop features lagging behind)
 
 ### Recently Completed
-- Sunrise/sunset times display (mobile only) - fetches from sunrise-sunset.org API
-- Two-row header layout on mobile:
-  - Top row: back button + "SURF FORECAST" + location name (right-aligned)
-  - Bottom row: sun times (left) + rating badge (right)
-- Flat rating color tweaked to darker gray (#4a5568)
+- **Wave height visualization**: Blue dotted line shows wave height relative to 6ft surfer silhouette
+  - Line position scales with actual wave height (0.9ft = knees, 4.3ft = neck, 6ft = head)
+  - Surfer tinted blue to match, 40% opacity
+- **Location switcher**: Dropdown to switch between spots
+  - Sandy Hook, NJ and Uluwatu, Bali currently configured
+  - Each location has coordinates, timezone, and optimal swell/wind directions
+  - Data refetches on location change
+- **Header reorganized**:
+  - Title shortened to "FORECAST"
+  - Sun times next to title
+  - Location dropdown below
+  - Rating badge (FLAT/FAIR/GOOD/EPIC) in top-right of Current Conditions box
+- Sunrise/sunset times from sunrise-sunset.org API
 
 ### Uncommitted
-- Updated Surfer.png (can commit later if needed)
+- Updated Surfer.png in assets (can commit later if needed)
 
 ## Planned Feature: Multi-Location Support
 
