@@ -1,7 +1,29 @@
 // Surf Forecast JavaScript
 
-const SANDY_HOOK_LAT = 40.4667;
-const SANDY_HOOK_LNG = -74.01;
+const LOCATIONS = {
+  'sandy-hook': {
+    name: 'Sandy Hook, NJ',
+    lat: 40.4667,
+    lng: -74.01,
+    timezone: 'America/New_York',
+    optimal: {
+      swellDirs: [90, 112.5, 135], // E, ESE, SE
+      windDirs: [270, 315], // W, NW (offshore)
+    }
+  },
+  'uluwatu': {
+    name: 'Uluwatu, Bali',
+    lat: -8.8155,
+    lng: 115.0892,
+    timezone: 'Asia/Makassar',
+    optimal: {
+      swellDirs: [180, 202.5, 225], // S, SSW, SW
+      windDirs: [0, 45], // N, NE (offshore)
+    }
+  }
+};
+
+let currentLocation = 'sandy-hook';
 
 // Toggle hourly section expand/collapse
 function toggleHourlyExpand(event) {
@@ -25,20 +47,55 @@ function closeHourlyExpand(event) {
   section.classList.remove('expanded');
 }
 
-// Sandy Hook optimal conditions
-const OPTIMAL = {
-  swellDirs: [90, 112.5, 135], // E, ESE, SE
-  windDirs: [270, 315], // W, NW (offshore)
-  minHeight: 3,
-  maxHeight: 6,
-  minPeriod: 8
-};
+// Get optimal conditions for current location
+function getOptimal() {
+  const loc = LOCATIONS[currentLocation];
+  return {
+    swellDirs: loc.optimal.swellDirs,
+    windDirs: loc.optimal.windDirs,
+    minHeight: 3,
+    maxHeight: 6,
+    minPeriod: 8
+  };
+}
 
 let forecastChart = null;
 
 document.addEventListener('DOMContentLoaded', init);
 
 async function init() {
+  // Set up location dropdown
+  const dropdown = document.getElementById('locationSelect');
+  if (dropdown) {
+    dropdown.addEventListener('change', (e) => {
+      switchLocation(e.target.value);
+    });
+  }
+
+  updateLocationName();
+  await Promise.all([
+    loadForecast(),
+    loadSunTimes()
+  ]);
+}
+
+function updateLocationName() {
+  const loc = LOCATIONS[currentLocation];
+  const nameEl = document.getElementById('locationName');
+  if (nameEl) nameEl.textContent = loc.name;
+}
+
+async function switchLocation(locationId) {
+  if (!LOCATIONS[locationId]) return;
+  currentLocation = locationId;
+  updateLocationName();
+
+  // Show loading state
+  document.getElementById('currentWaveHeight').textContent = '--';
+  document.getElementById('currentPeriod').textContent = '--';
+  document.getElementById('currentSwellDir').textContent = '--';
+  document.getElementById('currentWind').textContent = '--';
+
   await Promise.all([
     loadForecast(),
     loadSunTimes()
@@ -46,8 +103,9 @@ async function init() {
 }
 
 async function loadSunTimes() {
+  const loc = LOCATIONS[currentLocation];
   try {
-    const url = `https://api.sunrise-sunset.org/json?lat=${SANDY_HOOK_LAT}&lng=${SANDY_HOOK_LNG}&formatted=0`;
+    const url = `https://api.sunrise-sunset.org/json?lat=${loc.lat}&lng=${loc.lng}&formatted=0`;
     const response = await fetch(url);
     const data = await response.json();
 
@@ -73,9 +131,11 @@ async function loadSunTimes() {
 }
 
 async function loadForecast() {
+  const loc = LOCATIONS[currentLocation];
+  const tz = encodeURIComponent(loc.timezone);
   try {
     // Fetch from Open-Meteo Marine API (free, no key needed)
-    const url = `https://marine-api.open-meteo.com/v1/marine?latitude=${SANDY_HOOK_LAT}&longitude=${SANDY_HOOK_LNG}&hourly=wave_height,wave_direction,wave_period,wind_wave_height,swell_wave_height,swell_wave_direction,swell_wave_period&timezone=America%2FNew_York&forecast_days=3`;
+    const url = `https://marine-api.open-meteo.com/v1/marine?latitude=${loc.lat}&longitude=${loc.lng}&hourly=wave_height,wave_direction,wave_period,wind_wave_height,swell_wave_height,swell_wave_direction,swell_wave_period&timezone=${tz}&forecast_days=3`;
 
     const response = await fetch(url);
     if (!response.ok) throw new Error('Failed to fetch forecast');
@@ -83,7 +143,7 @@ async function loadForecast() {
     const data = await response.json();
 
     // Also get wind data from Open-Meteo Weather API
-    const windUrl = `https://api.open-meteo.com/v1/forecast?latitude=${SANDY_HOOK_LAT}&longitude=${SANDY_HOOK_LNG}&hourly=wind_speed_10m,wind_direction_10m&timezone=America%2FNew_York&forecast_days=3&wind_speed_unit=mph`;
+    const windUrl = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lng}&hourly=wind_speed_10m,wind_direction_10m&timezone=${tz}&forecast_days=3&wind_speed_unit=mph`;
 
     const windResponse = await fetch(windUrl);
     const windData = await windResponse.json();
@@ -139,6 +199,7 @@ function processForecast(marineData, windData) {
 }
 
 function calculateRating(height, period, swellDir, windSpeed, windDir) {
+  const OPTIMAL = getOptimal();
   let score = 50; // Start at fair
 
   // Wave height scoring (0-30 points)
