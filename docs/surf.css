@@ -131,15 +131,22 @@ body {
 
 .current-header {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
+  width: 100%;
 }
 
-.current-section h2 {
+.current-header h2 {
   font-size: 0.8rem;
   color: var(--text-muted);
   letter-spacing: 1px;
+  margin: 0;
+}
+
+.current-header .rating {
+  flex-shrink: 0;
 }
 
 .wave-visual {
