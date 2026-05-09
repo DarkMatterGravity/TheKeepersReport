@@ -251,38 +251,31 @@ function displayCurrentConditions(current) {
 }
 
 function updateWaveScale(waveHeightFt) {
-  const waveSvg = document.getElementById('waveSvg');
+  const waveLine = document.getElementById('waveLine');
   const surferImg = document.getElementById('surferImg');
-  if (!waveSvg || !surferImg) return;
+  if (!waveLine || !surferImg) return;
 
   // Surfer is 6ft reference
   const SURFER_HEIGHT_FT = 6;
   const SURFER_BASE_PX = 150; // matches CSS base height
-  const MIN_WAVE_PX = 25; // minimum wave size so it's always visible
 
-  // Wave scales relative to surfer: 6ft wave = same height as surfer
-  let waveScale = waveHeightFt / SURFER_HEIGHT_FT;
+  // Wave line position: height in pixels from bottom
+  // 6ft wave = top of surfer's head, 1ft wave = near feet
+  let waveLinePx = (waveHeightFt / SURFER_HEIGHT_FT) * SURFER_BASE_PX;
 
-  // Calculate wave height in pixels
-  let waveHeightPx = SURFER_BASE_PX * waveScale;
-
-  // Ensure minimum visibility
-  waveHeightPx = Math.max(MIN_WAVE_PX, waveHeightPx);
-
-  // Cap at 2.5x surfer height (15ft wave)
-  waveHeightPx = Math.min(SURFER_BASE_PX * 2.5, waveHeightPx);
+  // Clamp between 5px (tiny ripple) and surfer height
+  waveLinePx = Math.max(5, Math.min(SURFER_BASE_PX, waveLinePx));
 
   let surferHeightPx = SURFER_BASE_PX;
 
-  // For giant waves (>15ft), cap wave and shrink surfer instead
-  if (waveHeightFt > 15) {
-    waveHeightPx = SURFER_BASE_PX * 2.5;
-    surferHeightPx = SURFER_BASE_PX * (15 / waveHeightFt);
-    surferHeightPx = Math.max(SURFER_BASE_PX * 0.2, surferHeightPx);
+  // For giant waves (>6ft), line goes to top, surfer can shrink
+  if (waveHeightFt > SURFER_HEIGHT_FT) {
+    // Line stays at surfer height, show it's overhead
+    waveLinePx = SURFER_BASE_PX;
   }
 
-  // Apply sizes
-  waveSvg.style.height = `${waveHeightPx}px`;
+  // Apply position - bottom offset positions the dotted line
+  waveLine.style.bottom = `${waveLinePx}px`;
   surferImg.style.height = `${surferHeightPx}px`;
 }
 

@@ -146,32 +146,34 @@ body {
 }
 
 .visual-scene {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  flex-shrink: 0;
+  flex: 1;
 }
 
 .surfer-img {
   display: block;
   height: 150px;
   width: auto;
+  position: relative;
+  z-index: 2;
 }
 
-.wave-svg {
-  display: block;
-  height: 150px;
-  width: auto;
-  min-height: 30px;
-  transform-origin: bottom left;
-  animation: waveBob 4s ease-in-out infinite;
-  margin-left: -5px;
-  overflow: visible;
+.wave-line {
+  position: absolute;
+  left: 60px;
+  right: 0;
+  height: 3px;
+  bottom: 0;
+  border-bottom: 3px dotted var(--accent-blue);
+  animation: waveLineBob 3s ease-in-out infinite;
 }
 
-@keyframes waveBob {
-  0%, 100% { transform: scaleY(1) scaleX(1); }
-  50% { transform: scaleY(1.03) scaleX(0.98); }
+@keyframes waveLineBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
 }
 
 .visual-stats {
@@ -490,9 +492,8 @@ body {
     height: 140px;
   }
 
-  .wave-svg {
-    height: 140px;
-    min-height: 25px;
+  .wave-line {
+    left: 55px;
   }
 
   .stat-value {
