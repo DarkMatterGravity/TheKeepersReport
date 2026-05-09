@@ -257,26 +257,33 @@ function updateWaveScale(waveHeightFt) {
 
   // Surfer is 6ft reference
   const SURFER_HEIGHT_FT = 6;
-  const SURFER_BASE_PX = 120; // matches CSS base height
+  const SURFER_BASE_PX = 150; // matches CSS base height
+  const MIN_WAVE_PX = 25; // minimum wave size so it's always visible
 
   // Wave scales relative to surfer: 6ft wave = same height as surfer
   let waveScale = waveHeightFt / SURFER_HEIGHT_FT;
 
-  // Clamp wave scale between 0.15 (tiny ~1ft) and 2.5 (15ft)
-  waveScale = Math.max(0.15, Math.min(2.5, waveScale));
+  // Calculate wave height in pixels
+  let waveHeightPx = SURFER_BASE_PX * waveScale;
 
-  let surferScale = 1;
+  // Ensure minimum visibility
+  waveHeightPx = Math.max(MIN_WAVE_PX, waveHeightPx);
+
+  // Cap at 2.5x surfer height (15ft wave)
+  waveHeightPx = Math.min(SURFER_BASE_PX * 2.5, waveHeightPx);
+
+  let surferHeightPx = SURFER_BASE_PX;
 
   // For giant waves (>15ft), cap wave and shrink surfer instead
   if (waveHeightFt > 15) {
-    waveScale = 2.5;
-    surferScale = 15 / waveHeightFt;
-    surferScale = Math.max(0.2, surferScale);
+    waveHeightPx = SURFER_BASE_PX * 2.5;
+    surferHeightPx = SURFER_BASE_PX * (15 / waveHeightFt);
+    surferHeightPx = Math.max(SURFER_BASE_PX * 0.2, surferHeightPx);
   }
 
-  // Apply scales - SVG stroke-width stays constant when scaling height
-  waveSvg.style.height = `${SURFER_BASE_PX * waveScale}px`;
-  surferImg.style.height = `${SURFER_BASE_PX * surferScale}px`;
+  // Apply sizes
+  waveSvg.style.height = `${waveHeightPx}px`;
+  surferImg.style.height = `${surferHeightPx}px`;
 }
 
 function displayHourlyForecast(forecast) {
