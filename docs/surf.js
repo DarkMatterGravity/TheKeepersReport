@@ -251,19 +251,19 @@ function displayCurrentConditions(current) {
 }
 
 function updateWaveScale(waveHeightFt) {
-  const waveImg = document.getElementById('waveImg');
+  const waveSvg = document.getElementById('waveSvg');
   const surferImg = document.getElementById('surferImg');
-  if (!waveImg || !surferImg) return;
+  if (!waveSvg || !surferImg) return;
 
   // Surfer is 6ft reference
   const SURFER_HEIGHT_FT = 6;
-  const SURFER_BASE_PX = 70; // matches CSS base height
+  const SURFER_BASE_PX = 100; // matches CSS base height
 
   // Wave scales relative to surfer: 6ft wave = same height as surfer
   let waveScale = waveHeightFt / SURFER_HEIGHT_FT;
 
-  // Clamp wave scale between 0.1 (tiny) and 2.5 (15ft)
-  waveScale = Math.max(0.1, Math.min(2.5, waveScale));
+  // Clamp wave scale between 0.15 (tiny ~1ft) and 2.5 (15ft)
+  waveScale = Math.max(0.15, Math.min(2.5, waveScale));
 
   let surferScale = 1;
 
@@ -274,8 +274,8 @@ function updateWaveScale(waveHeightFt) {
     surferScale = Math.max(0.2, surferScale);
   }
 
-  // Apply scales
-  waveImg.style.height = `${SURFER_BASE_PX * waveScale}px`;
+  // Apply scales - SVG stroke-width stays constant when scaling height
+  waveSvg.style.height = `${SURFER_BASE_PX * waveScale}px`;
   surferImg.style.height = `${SURFER_BASE_PX * surferScale}px`;
 }
 

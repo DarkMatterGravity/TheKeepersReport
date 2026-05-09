@@ -142,7 +142,7 @@ body {
   align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
-  min-height: 100px;
+  min-height: 120px;
 }
 
 .visual-scene {
@@ -152,21 +152,23 @@ body {
   flex-shrink: 0;
 }
 
-.surfer-img,
-.wave-img {
+.surfer-img {
   display: block;
-  height: 70px;
+  height: 100px;
   width: auto;
 }
 
-.wave-img {
+.wave-svg {
+  height: 100px;
+  width: auto;
   transform-origin: bottom left;
   animation: waveBob 4s ease-in-out infinite;
+  margin-left: -5px;
 }
 
 @keyframes waveBob {
   0%, 100% { transform: scaleY(1) scaleX(1); }
-  50% { transform: scaleY(1.02) scaleX(0.99); }
+  50% { transform: scaleY(1.03) scaleX(0.98); }
 }
 
 .visual-stats {
@@ -481,9 +483,12 @@ body {
     gap: 16px;
   }
 
-  .surfer-img,
-  .wave-img {
-    height: 65px;
+  .surfer-img {
+    height: 90px;
+  }
+
+  .wave-svg {
+    height: 90px;
   }
 
   .stat-value {
