@@ -339,20 +339,22 @@ function updateWaveScale(waveHeightFt) {
   // Surfer is 6ft reference
   const SURFER_HEIGHT_FT = 6;
   const SURFER_BASE_PX = 150; // matches CSS base height
+  const MAX_WAVE_LINE_PX = 140; // max line position (just above surfer head)
 
-  // Wave line position: height in pixels from bottom
-  // 6ft wave = top of surfer's head, 1ft wave = near feet
-  let waveLinePx = (waveHeightFt / SURFER_HEIGHT_FT) * SURFER_BASE_PX;
-
-  // Clamp between 5px (tiny ripple) and surfer height
-  waveLinePx = Math.max(5, Math.min(SURFER_BASE_PX, waveLinePx));
-
+  let waveLinePx;
   let surferHeightPx = SURFER_BASE_PX;
 
-  // For giant waves (>6ft), line goes to top, surfer can shrink
-  if (waveHeightFt > SURFER_HEIGHT_FT) {
-    // Line stays at surfer height, show it's overhead
-    waveLinePx = SURFER_BASE_PX;
+  if (waveHeightFt <= 10) {
+    // Normal waves: line scales with wave height
+    waveLinePx = (waveHeightFt / SURFER_HEIGHT_FT) * SURFER_BASE_PX;
+    waveLinePx = Math.max(5, Math.min(MAX_WAVE_LINE_PX, waveLinePx));
+  } else {
+    // Giant waves (>10ft): line at max, surfer shrinks to show scale
+    waveLinePx = MAX_WAVE_LINE_PX;
+    // Shrink surfer so the ratio still makes sense
+    // e.g., 20ft wave = surfer at 50% (6ft person looks half the wave height)
+    surferHeightPx = SURFER_BASE_PX * (10 / waveHeightFt);
+    surferHeightPx = Math.max(30, surferHeightPx); // don't go below 30px
   }
 
   // Apply position - bottom offset positions the dotted line
