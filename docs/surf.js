@@ -20,6 +20,16 @@ const LOCATIONS = {
       swellDirs: [180, 202.5, 225], // S, SSW, SW
       windDirs: [0, 45], // N, NE (offshore)
     }
+  },
+  'nazare': {
+    name: 'Nazaré, Portugal',
+    lat: 39.6021,
+    lng: -9.0698,
+    timezone: 'Europe/Lisbon',
+    optimal: {
+      swellDirs: [270, 292.5, 315], // W, WNW, NW
+      windDirs: [90, 45], // E, NE (offshore)
+    }
   }
 };
 
